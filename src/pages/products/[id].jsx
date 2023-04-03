@@ -3,7 +3,7 @@ export default function ProductsPage() {
     <div className="row">
       <div className="col">
         <div className="banner">
-          <img src=".././img/banner.jpg" className="img-fluid" alt="К весне готовы!"/>
+          <img src="/img/banner.jpg" className="img-fluid" alt="К весне готовы!"/>
           <h2 className="banner-header">К весне готовы!</h2>
         </div>
 
@@ -11,7 +11,7 @@ export default function ProductsPage() {
           <h2 className="text-center">Босоножки MYER</h2>
           <div className="row">
             <div className="col-5">
-              <img src=".././img/products/sandals_myer.jpg"
+              <img src="/img/products/sandals_myer.jpg"
                    className="img-fluid" alt=""/>
             </div>
             <div className="col-7">

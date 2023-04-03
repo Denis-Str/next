@@ -37,7 +37,7 @@ a {
   height: 32px;
   width: 32px;
   margin: 0 10px;
-  background-image: url('/header-controls-sprite.png');
+  background-image: url('/img/header-controls-sprite.png');
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -205,6 +205,12 @@ a {
   border: none;
   outline: none;
   box-shadow: none;
+}
+
+/* Cart */
+.card {
+  max-width: 30rem;
+  margin: 0 auto;
 }
 
 /* Footer */

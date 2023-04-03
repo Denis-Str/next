@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function AppHeader() {
   return (
@@ -8,7 +7,7 @@ export default function AppHeader() {
         <div className="col">
           <nav className="navbar navbar-expand-sm navbar-light bg-light">
             <Link className="navbar-brand" href="/">
-              <Image src="/img/header-logo.png" alt="Bosa Noga" width="100" height="100" />
+              <img src="/img/header-logo.png" alt="Bosa Noga" />
             </Link>
             <div className="collapase navbar-collapse" id="navbarMain">
               <ul className="navbar-nav mr-auto">
