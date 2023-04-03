@@ -1,13 +1,12 @@
+import AppHeader from "@/components/general/AppHeader";
+import AppFooter from "@/components/general/AppFooter";
+
 export default function DefaultLayout({children}) {
   return (
     <>
-      <header>
-        Header
-      </header>
+      <AppHeader />
       <main>{children}</main>
-      <footer>
-        Footer
-      </footer>
+      <AppFooter />
     </>
   )
 }
