@@ -13,16 +13,16 @@ export default function AppHeader() {
             <div className="collapase navbar-collapse" id="navbarMain">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <a className="nav-link" href="/">Главная</a>
+                  <Link className="nav-link" href="/">Главная</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catalog.html">Каталог</a>
+                  <Link className="nav-link" href="/catalog">Каталог</Link>
                 </li>
                 <li className="nav-item active">
-                  <a className="nav-link" href="/about.html">О магазине</a>
+                  <Link className="nav-link" href="/about">О магазине</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/contacts.html">Контакты</a>
+                  <Link className="nav-link" href="/contacts">Контакты</Link>
                 </li>
               </ul>
               <div>
