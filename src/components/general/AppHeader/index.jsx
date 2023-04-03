@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "./header.module.scss";
 
 export default function AppHeader() {
   return (
@@ -17,7 +18,7 @@ export default function AppHeader() {
                 <li className="nav-item">
                   <Link className="nav-link" href="/catalog">Каталог</Link>
                 </li>
-                <li className="nav-item active">
+                <li className="nav-item">
                   <Link className="nav-link" href="/about">О магазине</Link>
                 </li>
                 <li className="nav-item">
@@ -25,15 +26,15 @@ export default function AppHeader() {
                 </li>
               </ul>
               <div>
-                <div className="header-controls-pics">
-                  <div data-id="search-expander" className="header-controls-pic header-controls-search"></div>
-                  <div className="header-controls-pic header-controls-cart">
-                    <div className="header-controls-cart-full">1</div>
+                <div className={styles.pics}>
+                  <div data-id="search-expander" className={`${styles.pic} ${styles.search}`}></div>
+                  <div className={`${styles.pic} ${styles.cart}`}>
+                    <div className={styles['cart-full']}>1</div>
                     <div className="header-controls-cart-menu"></div>
                   </div>
                 </div>
-                <form data-id="search-form" className="header-controls-search-form form-inline invisible">
-                  <input className="form-control" placeholder="Поиск" />
+                <form data-id="search-form" className={`${styles['search-form']} form-inline invisible`}>
+                  <input className={`${styles['form-control']}`} placeholder="Поиск" />
                 </form>
               </div>
             </div>
