@@ -1,12 +1,14 @@
+import styles from "@/pages/catalog/catalog.module.scss";
+
 export default function CatalogPage() {
   return (
     <>
-      <section className="catalog">
+      <section className={styles.catalog}>
         <h2 className="text-center">Каталог</h2>
-        <form className="catalog-search-form form-inline">
-          <input className="form-control" placeholder="Поиск"/>
+        <form className={`${styles['search-form']} form-inline`}>
+          <input className={`${styles['form-control']}`} placeholder="Поиск"/>
         </form>
-        <ul className="catalog-categories nav justify-content-center">
+        <ul className={`${styles.categories} nav justify-content-center`}>
           <li className="nav-item">
             <a className="nav-link active" href="#">Все</a>
           </li>
@@ -25,7 +27,7 @@ export default function CatalogPage() {
         </ul>
         <div className="row">
           <div className="col-4">
-            <div className="card catalog-item-card">
+            <div className={`card ${styles['item-card']}`}>
               <img src="/img/products/sandals_myer.jpg"
                    className="card-img-top img-fluid" alt="Босоножки 'MYER'"/>
               <div className="card-body">
@@ -36,7 +38,7 @@ export default function CatalogPage() {
             </div>
           </div>
           <div className="col-4">
-            <div className="card catalog-item-card">
+            <div className={`card ${styles['item-card']}`}>
               <img src="/img/products/sandals_keira.jpg"
                    className="card-img-top img-fluid" alt="Босоножки 'Keira'"/>
               <div className="card-body">
@@ -47,7 +49,7 @@ export default function CatalogPage() {
             </div>
           </div>
           <div className="col-4">
-            <div className="card catalog-item-card">
+            <div className={`card ${styles['item-card']}`}>
               <img src="/img/products/superhero_sneakers.jpg"
                    className="card-img-top img-fluid" alt="Супергеройские кеды"/>
               <div className="card-body">
@@ -58,7 +60,7 @@ export default function CatalogPage() {
             </div>
           </div>
           <div className="col-4">
-            <div className="card catalog-item-card">
+            <div className={`card ${styles['item-card']}`}>
               <img src="/img/products/sandals_myer.jpg"
                    className="card-img-top img-fluid" alt="Босоножки 'MYER'"/>
               <div className="card-body">
@@ -69,7 +71,7 @@ export default function CatalogPage() {
             </div>
           </div>
           <div className="col-4">
-            <div className="card catalog-item-card">
+            <div className={`card ${styles['item-card']}`}>
               <img src="/img/products/sandals_keira.jpg"
                    className="card-img-top img-fluid" alt="Босоножки 'Keira'"/>
               <div className="card-body">
@@ -80,7 +82,7 @@ export default function CatalogPage() {
             </div>
           </div>
           <div className="col-4">
-            <div className="card catalog-item-card">
+            <div className={`card ${styles['item-card']}`}>
               <img src="/img/products/superhero_sneakers.jpg"
                    className="card-img-top img-fluid" alt="Супергеройские кеды"/>
               <div className="card-body">
