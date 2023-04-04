@@ -30,7 +30,7 @@ export default function AppHeader() {
               </ul>
               <div>
                 <div className={styles.pics}>
-                  <form data-id="search-form" className={`${styles['search-form']} form-inline ${showSearch ? 'invisible' : ""}`.trim()}>
+                  <form data-id="search-form" className={`${styles['search-form']} form-inline ${showSearch ? '' : 'invisible'}`.trim()}>
                     <input className={`${styles['form-control']}`} placeholder="Поиск" />
                   </form>
                   <div className={`${styles.pic} ${styles.search}`} onClick={() => setShowSearch(showSearch = !showSearch)} />

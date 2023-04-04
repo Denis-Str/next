@@ -1,4 +1,3 @@
-import "@/styles/colors.scss"
 import "@/styles/globals.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DefaultLayout from "@/layouts/default";
