@@ -33,7 +33,7 @@ export default function AppHeader() {
                     <div className="header-controls-cart-menu"></div>
                   </div>
                 </div>
-                <form data-id="search-form" className={`${styles['search-form']} form-inline invisible`}>
+                <form data-id="search-form" className={`${styles['search-form']} form-inline`}>
                   <input className={`${styles['form-control']}`} placeholder="Поиск" />
                 </form>
               </div>
