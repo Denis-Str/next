@@ -1,7 +1,10 @@
 import Link from "next/link";
 import styles from "./header.module.scss";
+import {useState} from "react";
 
 export default function AppHeader() {
+  let [showSearch, setShowSearch] = useState(false);
+
   return (
     <header className="container">
       <div className="row">
@@ -27,15 +30,15 @@ export default function AppHeader() {
               </ul>
               <div>
                 <div className={styles.pics}>
-                  <div data-id="search-expander" className={`${styles.pic} ${styles.search}`}></div>
-                  <div className={`${styles.pic} ${styles.cart}`}>
+                  <form data-id="search-form" className={`${styles['search-form']} form-inline ${showSearch ? 'invisible' : ""}`.trim()}>
+                    <input className={`${styles['form-control']}`} placeholder="Поиск" />
+                  </form>
+                  <div className={`${styles.pic} ${styles.search}`} onClick={() => setShowSearch(showSearch = !showSearch)} />
+                  <Link className={`${styles.pic} ${styles.cart}`} href="/cart">
                     <div className={styles['cart-full']}>1</div>
                     <div className="header-controls-cart-menu"></div>
-                  </div>
+                  </Link>
                 </div>
-                <form data-id="search-form" className={`${styles['search-form']} form-inline`}>
-                  <input className={`${styles['form-control']}`} placeholder="Поиск" />
-                </form>
               </div>
             </div>
           </nav>

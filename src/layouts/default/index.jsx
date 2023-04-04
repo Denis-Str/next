@@ -1,8 +1,7 @@
-
 import Head from "next/head";
 import AppHeader from "@/components/general/AppHeader";
 import AppFooter from "@/components/general/AppFooter";
-
+import styles from "@/layouts/default/default.module.scss";
 
 export default function DefaultLayout({children}) {
   return (
@@ -14,7 +13,17 @@ export default function DefaultLayout({children}) {
         <title>Bosa Noga</title>
       </Head>
       <AppHeader />
-      <main className="container">{children}</main>
+      <main className="container">
+        <div className="row">
+          <div className="col">
+            <div className={styles.banner}>
+              <img src="/img/banner.jpg" className="img-fluid" alt="К весне готовы!"/>
+              <h2 className={styles['banner-header']}>К весне готовы!</h2>
+            </div>
+          </div>
+        </div>
+        {children}
+      </main>
       <AppFooter />
     </>
   )
