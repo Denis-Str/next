@@ -49,22 +49,22 @@ a {
 }
 
 .preloader :first-child {
-  background: #19A68C;
+  background: $green;
   animation-delay: -1.5s;
 }
 
 .preloader :nth-child(2) {
-  background: #ff748b;
+  background: $red-1;
   animation-delay: -1s;
 }
 
 .preloader :nth-child(3) {
-  background: #ffb676;
+  background: $orange;
   animation-delay: -0.5s;
 }
 
 .preloader :last-child {
-  background: #727e86;
+  background: $gray;
 }
 
 @keyframes spin {
@@ -96,15 +96,15 @@ a {
 }
 
 .catalog-item-size.selected {
-  background: #727e86;
+  background: $gray;
   border-radius: 15px;
-  color: #fff;
+  color: $white;
 }
 
 /* Bootstrap */
 .nav-link {
   .active {
-    color: #ff0000;
+    color: $red-2;
   }
 }
 
@@ -115,11 +115,11 @@ h2,
 }
 
 .btn-outline-primary {
-  color: #727e86;
-  border-color: #727e86;
+  color: $gray;
+  border-color: $gray;
 }
 
 .btn-outline-primary:hover {
-  background-color: #727e86;
-  border-color: #727e86;
+  background-color: $gray;
+  border-color: $gray;
 }
