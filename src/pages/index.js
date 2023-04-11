@@ -1,4 +1,8 @@
-export default function HomePage() {
+import {useDispatch} from "react-redux";
+import { fetchHitsList, setHitsList } from "@/redux/hits";
+import axios from "axios";
+
+function HomePage() {
   return (
     <>
       <section className="top-sales">
@@ -22,3 +26,15 @@ export default function HomePage() {
     </>
   )
 }
+
+export async function getStaticProps() {
+  const { data: hits } = await axios.get('http://localhost:7070/api/top-sales');
+
+  return {
+    props: {
+      hits,
+    },
+  }
+}
+
+export default HomePage;
