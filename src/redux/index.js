@@ -1,10 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import hitsReducer from "./hits";
+import { createWrapper } from 'next-redux-wrapper';
+import { hitsSlice } from "./hits";
 import errorsReducer from "./errors";
 
-export default configureStore({
-  reducer: {
-    hits: hitsReducer,
-    errors: errorsReducer,
-  },
-})
+const makeStore = () =>
+  configureStore({
+    reducer: {
+      [hitsSlice.name]: hitsSlice.reducer,
+      errors: errorsReducer,
+    },
+    devTools: true,
+  });
+
+export const wrapper = createWrapper(makeStore);
