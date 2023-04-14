@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import { fetchHitsList, hitsList } from "@/redux/hits";
+import { fetchHitsList, isLoading } from "@/redux/hits";
 import { wrapper } from "@/redux";
 import Preloader from "@/components/common/Preloader";
 import SalesList from "@/components/pages/Index/TopSales";
@@ -9,14 +9,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
 );
 
 function HomePage() {
-  const hits = useSelector(hitsList) || [];
+  const hitsIsLoading = useSelector(isLoading);
 
   return (
     <>
       <section className="top-sales">
         <h2 className="text-center">Хиты продаж!</h2>
-        <Preloader />
-        <SalesList list ={hits} />
+        { hitsIsLoading ? <Preloader /> : <SalesList /> }
       </section>
       <section className="catalog">
         <h2 className="text-center">Каталог</h2>
