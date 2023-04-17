@@ -1,12 +1,17 @@
 import {useSelector} from "react-redux";
 import { fetchHitsList, isLoading } from "@/redux/hits";
+import { fetchCategories, fetchCatalog } from "@/redux/catalog";
 import { wrapper } from "@/redux";
 import Preloader from "@/components/common/Preloader";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => await store.dispatch(fetchHitsList())
+  (store) => async () => {
+    await store.dispatch(fetchHitsList());
+    await store.dispatch(fetchCategories());
+    await store.dispatch(fetchCatalog());
+  }
 );
 
 function HomePage() {
