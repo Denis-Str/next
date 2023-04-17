@@ -2,11 +2,6 @@ export default function ProductsPage() {
   return (
     <div className="row">
       <div className="col">
-        <div className="banner">
-          <img src="/img/banner.jpg" className="img-fluid" alt="К весне готовы!"/>
-          <h2 className="banner-header">К весне готовы!</h2>
-        </div>
-
         <section className="catalog-item">
           <h2 className="text-center">Босоножки MYER</h2>
           <div className="row">

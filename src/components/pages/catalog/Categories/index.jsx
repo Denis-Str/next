@@ -1,27 +1,30 @@
-import axios from "axios";
-import { useState, useEffect } from 'react';
+// import axios from "axios";
+// import { useState, useEffect } from 'react';
+import {useSelector} from "react-redux";
+import {categoriesList, isLoading} from "@/redux/catalog";
 import Preloader from "@/components/common/Preloader";
 import Category from "@/components/pages/catalog/Categories/Category";
 import styles from "@/pages/catalog/catalog.module.scss";
 
 export default function Categories() {
-  const [categories, setCategories] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      setLoading(true);
-      try {
-        const { data } = await axios.get('http://localhost:7070/api/categories');
-        setCategories(data);
-      } catch (e) {
-        console.log(e);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchCategories();
-  }, []);
+  const categories = useSelector(categoriesList);
+  const loading = useSelector(isLoading);
+  // const [categories, setCategories] = useState([]);
+  // const [isLoading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const { data } = await axios.get('http://localhost:7070/api/categories');
+  //       setCategories(data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   fetchCategories();
+  // }, []);
 
   const list = categories.map(category => <Category key={category.id} category={category} />)
   const ListView = () => (
@@ -35,7 +38,7 @@ export default function Categories() {
 
   return (
     <>
-      {isLoading ? <Preloader/> : <ListView/> }
+      {loading ? <Preloader/> : <ListView/> }
     </>
   )
 }

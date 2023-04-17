@@ -5,6 +5,7 @@ import { wrapper } from "@/redux";
 import Preloader from "@/components/common/Preloader";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
+import ListView from "@/components/pages/catalog/ListView";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
@@ -26,6 +27,10 @@ function HomePage() {
       <section className="catalog">
         <h2 className="text-center">Каталог</h2>
         <Categories />
+        <ListView />
+        <div className="text-center">
+          <button className="btn btn-outline-primary">Загрузить ещё</button>
+        </div>
       </section>
     </>
   )

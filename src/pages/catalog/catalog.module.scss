@@ -7,8 +7,24 @@
   margin-bottom: 2em;
 }
 
+.item-comp {
+  margin-bottom: 1rem;
+}
+
 .item-card {
-  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.img-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.card-content {
+  padding: 16px;
 }
 
 .search-form {
