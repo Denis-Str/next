@@ -1,4 +1,5 @@
 import styles from "@/pages/catalog/catalog.module.scss";
+import Categories from "@/components/pages/catalog/Categories";
 
 export default function CatalogPage() {
   return (
@@ -8,23 +9,7 @@ export default function CatalogPage() {
         <form className={`${styles['search-form']} form-inline`}>
           <input className={`${styles['form-control']}`} placeholder="Поиск"/>
         </form>
-        <ul className={`${styles.categories} nav justify-content-center`}>
-          <li className="nav-item">
-            <a className="nav-link active" href="#">Все</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Женская обувь</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Мужская обувь</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Обувь унисекс</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Детская обувь</a>
-          </li>
-        </ul>
+        <Categories />
         <div className="row">
           <div className="col-4">
             <div className={`card ${styles['item-card']}`}>
