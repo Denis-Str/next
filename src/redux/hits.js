@@ -15,6 +15,7 @@ export const fetchHitsList = () => async (dispatch) => {
     dispatch(setIsLoading(false));
   }
 }
+
 export const hitsSlice = createSlice({
   name: 'hits',
   initialState: {

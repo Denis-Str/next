@@ -3,3 +3,16 @@
     margin-right: 10px;
   }
 }
+
+.card {
+  height: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  flex: 1;
+}
