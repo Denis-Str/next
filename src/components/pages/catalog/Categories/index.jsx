@@ -15,7 +15,7 @@ export default function Categories() {
   //   const fetchCategories = async () => {
   //     setLoading(true);
   //     try {
-  //       const { data } = await axios.get('http://localhost:7070/api/categories');
+  //       const { data } = await axios.get('/api/categories');
   //       setCategories(data);
   //     } catch (e) {
   //       console.log(e);

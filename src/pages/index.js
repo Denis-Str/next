@@ -1,7 +1,9 @@
-import {useSelector} from "react-redux";
-import { fetchHitsList, isLoading } from "@/redux/hits";
-import { fetchCategories, fetchCatalog } from "@/redux/catalog";
 import { wrapper } from "@/redux";
+import {useState} from "react";
+import axios from "axios";
+import {useSelector, useDispatch} from "react-redux";
+import { fetchHitsList, isLoading } from "@/redux/hits";
+import {fetchCategories, fetchCatalog, setCatalogList} from "@/redux/catalog";
 import Preloader from "@/components/common/Preloader";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
@@ -16,7 +18,23 @@ export const getServerSideProps = wrapper.getServerSideProps(
 );
 
 function HomePage() {
+  const dispatch = useDispatch();
   const hitsIsLoading = useSelector(isLoading);
+  let [count, setCount] = useState(6);
+  const loadMore = async () => {
+    try {
+      const { data } = await axios.get(`/api/items/`, {
+        params: {
+          categoryId: 0,
+          offset: count
+        }
+      });
+      setCount(count = count + 6);
+      dispatch(setCatalogList(data));
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <>
@@ -29,7 +47,7 @@ function HomePage() {
         <Categories />
         <ListView />
         <div className="text-center">
-          <button className="btn btn-outline-primary">Загрузить ещё</button>
+          <button className="btn btn-outline-primary" onClick={() => loadMore()}>Загрузить ещё</button>
         </div>
       </section>
     </>

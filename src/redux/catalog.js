@@ -7,7 +7,7 @@ export const fetchCategories= () => async (dispatch) => {
   try {
     dispatch(setError(null));
     dispatch(setIsLoading(true));
-    const { data } = await axios.get('http://localhost:7070/api/categories');
+    const { data } = await axios.get('/api/categories');
     dispatch(setCategoriesList(data));
   } catch (e) {
     dispatch(setError(e));
@@ -20,7 +20,7 @@ export const fetchCatalog= () => async (dispatch) => {
   try {
     dispatch(setError(null));
     dispatch(setIsLoading(true));
-    const { data } = await axios.get('http://localhost:7070/api/items');
+    const { data } = await axios.get('/api/items');
     dispatch(setCatalogList(data));
   } catch (e) {
     dispatch(setError(e));
@@ -38,7 +38,7 @@ export const catalogSlice = createSlice({
   },
   reducers: {
     setCatalogList: (state, {payload}) => {
-      state.catalog = payload;
+      state.catalog = [...state.catalog, ...payload];
     },
     setCategoriesList: (state, {payload}) => {
       state.categories = payload;

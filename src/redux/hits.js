@@ -6,7 +6,7 @@ import {setError} from "./errors";
 export const fetchHitsList = () => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    const { data } = await axios.get('http://localhost:7070/api/top-sales');
+    const { data } = await axios.get('/api/top-sales');
     dispatch(setError(null));
     dispatch(setHitsList(data));
   } catch (e) {
