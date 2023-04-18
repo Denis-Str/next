@@ -109,8 +109,8 @@ ul {
 
 /* Bootstrap */
 .nav-link {
-  .active {
-    color: $red-2;
+   &.active {
+    color: $red-2 !important;
   }
 }
 
