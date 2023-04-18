@@ -34,14 +34,21 @@ export const catalogSlice = createSlice({
   initialState: {
     catalog: [],
     categories: [],
+    currentCategory: 0,
     isLoading: false,
   },
   reducers: {
     setCatalogList: (state, {payload}) => {
+      state.catalog = payload;
+    },
+    loadMoreCatalogList: (state, {payload}) => {
       state.catalog = [...state.catalog, ...payload];
     },
     setCategoriesList: (state, {payload}) => {
       state.categories = payload;
+    },
+    setCurrentCategory: (state, {payload}) => {
+      state.currentCategory = payload;
     },
     setIsLoading: (state, {payload}) => {
       state.isLoading = payload;
@@ -57,9 +64,16 @@ export const catalogSlice = createSlice({
   }
 })
 
-export const { setIsLoading, setCategoriesList, setCatalogList } = catalogSlice.actions;
+export const {
+  setIsLoading,
+  setCategoriesList,
+  setCatalogList,
+  loadMoreCatalogList,
+  setCurrentCategory
+} = catalogSlice.actions;
 export const catalogList = ({ catalog }) =>  catalog.catalog;
 export const categoriesList = ({ catalog }) =>  catalog.categories;
+export const currentCategory = ({ catalog }) =>  catalog.currentCategory;
 export const isLoading = ({ catalog }) =>  catalog.isLoading;
 
 export default catalogSlice.reducer;

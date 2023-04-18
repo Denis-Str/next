@@ -1,44 +1,47 @@
-// import axios from "axios";
-// import { useState, useEffect } from 'react';
-import {useSelector} from "react-redux";
-import {categoriesList, isLoading} from "@/redux/catalog";
+import {useDispatch, useSelector} from "react-redux";
+import {categoriesList, currentCategory, isLoading, setCatalogList, setCurrentCategory} from "@/redux/catalog";
 import Preloader from "@/components/common/Preloader";
 import Category from "@/components/pages/catalog/Categories/Category";
 import styles from "@/pages/catalog/catalog.module.scss";
+import axios from "axios";
 
 export default function Categories() {
   const categories = useSelector(categoriesList);
   const loading = useSelector(isLoading);
-  // const [categories, setCategories] = useState([]);
-  // const [isLoading, setLoading] = useState(false);
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const { data } = await axios.get('/api/categories');
-  //       setCategories(data);
-  //     } catch (e) {
-  //       console.log(e);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   fetchCategories();
-  // }, []);
+  const dispatch = useDispatch();
+  const categoryID = useSelector(currentCategory);
+  const style = categoryID === 0 ? 'nav-link active' : 'nav-link';
+  const handleClick = async () => {
+    dispatch(setCurrentCategory(0));
+    try {
+      const { data } = await axios.get(`/api/items/`, {
+        params: {
+          categoryId: 0,
+          offset: 0
+        }
+      });
+      dispatch(setCatalogList(data));
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
-  const list = categories.map(category => <Category key={category.id} category={category} />)
+
+  const list = categories.map(category => <Category key={category.id} category={category}/>)
   const ListView = () => (
-    <ul className={`${styles.categories} nav justify-content-center`}>
-      <li className="nav-item">
-        <div className="nav-link active">Все</div>
-      </li>
-      { list }
-    </ul>
+    <nav className="navbar navbar-expand-sm justify-content-center">
+      <ul className={`${styles.categories} navbar-nav mr-auto`}>
+        <li className="nav-item">
+          <div className={style} onClick={() => handleClick(0)}>Все</div>
+        </li>
+        {list}
+      </ul>
+    </nav>
   )
 
   return (
     <>
-      {loading ? <Preloader/> : <ListView/> }
+      {loading ? <Preloader/> : <ListView/>}
     </>
   )
 }
