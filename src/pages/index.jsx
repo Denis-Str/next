@@ -1,7 +1,5 @@
 import { wrapper } from "@/redux";
-import {useSelector} from "react-redux";
 import { fetchHitsList } from "@/redux/hits";
-import { isLoading} from "@/redux/catalog";
 import {fetchCatalog, fetchCategories } from "@/redux/catalog/api";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
@@ -16,8 +14,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
 );
 
 function HomePage() {
-  const loading = useSelector(isLoading);
-
   return (
     <>
       <section className="top-sales">
