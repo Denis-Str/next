@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {catalogList, currentCategory, loadMoreCatalogList, setIsLoading, isLoading} from "@/redux/catalog";
 import ItemView from "@/components/pages/catalog/ListView/ItemView";
-import Preloader from "@/components/common/Preloader";
+// import Preloader from "@/components/common/Preloader";
 
 export default function ListView() {
   const dispatch = useDispatch();
@@ -12,12 +12,12 @@ export default function ListView() {
 
   const catalog = useSelector(catalogList);
   const categoryId = useSelector(currentCategory);
-  // const loading= useSelector(isLoading);
+  // const loading = useSelector(isLoading);
   const catalogView = catalog.map(item => <ItemView key={`${item.category}-${item.id}`} item={item}/>);
 
   const loadMore = async () => {
     try {
-      dispatch(setIsLoading(true));
+      // dispatch(setIsLoading(true));
       const { data } = await axios.get(`/api/items/`, {
         params: {
           categoryId,
@@ -30,7 +30,7 @@ export default function ListView() {
     } catch (e) {
       console.log(e)
     } finally {
-      dispatch(setIsLoading(false));
+      // dispatch(setIsLoading(false));
     }
   };
 
