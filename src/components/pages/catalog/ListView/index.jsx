@@ -12,7 +12,7 @@ export default function ListView() {
 
   const catalog = useSelector(catalogList);
   const categoryId = useSelector(currentCategory);
-  const loading= useSelector(isLoading);
+  // const loading= useSelector(isLoading);
   const catalogView = catalog.map(item => <ItemView key={`${item.category}-${item.id}`} item={item}/>);
 
   const loadMore = async () => {
@@ -36,13 +36,14 @@ export default function ListView() {
 
   useEffect(() => {
     setCount(count = 6);
+    setDisabledLoadMore(true);
   }, [categoryId]);
 
   useEffect(() => {
     if (catalog.length < 6) setDisabledLoadMore(false);
   }, []);
 
-  if (loading) return <Preloader/>;
+  // if (loading) return <Preloader/>;
   return (
     <>
       <ul className="row">{catalogView}</ul>
