@@ -1,13 +1,14 @@
 import { wrapper } from "@/redux";
-import {useState, useEffect} from "react";
 import axios from "axios";
+import {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import { fetchHitsList, isLoading } from "@/redux/hits";
-import {fetchCategories, fetchCatalog, loadMoreCatalogList, currentCategory} from "@/redux/catalog";
-import Preloader from "@/components/common/Preloader";
+import { fetchHitsList } from "@/redux/hits";
+import {loadMoreCatalogList, currentCategory, setIsLoading, isLoading} from "@/redux/catalog";
+import {fetchCategories, fetchCatalog } from "@/redux/catalog/api";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
 import ListView from "@/components/pages/catalog/ListView";
+import Preloader from "@/components/common/Preloader";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
@@ -19,11 +20,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
 function HomePage() {
   const dispatch = useDispatch();
-  const hitsIsLoading = useSelector(isLoading);
   const categoryId = useSelector(currentCategory);
+  const loading = useSelector(isLoading);
   let [count, setCount] = useState(6);
+
   const loadMore = async () => {
     try {
+      dispatch(setIsLoading(true));
       const { data } = await axios.get(`/api/items/`, {
         params: {
           categoryId,
@@ -34,6 +37,8 @@ function HomePage() {
       dispatch(loadMoreCatalogList(data));
     } catch (e) {
       console.log(e)
+    } finally {
+      dispatch(setIsLoading(false));
     }
   };
 
@@ -45,12 +50,12 @@ function HomePage() {
     <>
       <section className="top-sales">
         <h2 className="text-center">Хиты продаж!</h2>
-        { hitsIsLoading ? <Preloader /> : <SalesList /> }
+        <SalesList />
       </section>
       <section className="catalog">
         <h2 className="text-center">Каталог</h2>
         <Categories />
-        <ListView />
+        {loading ? <Preloader/> : <ListView />}
         <div className="text-center">
           <button className="btn btn-outline-primary" onClick={() => loadMore()}>Загрузить ещё</button>
         </div>

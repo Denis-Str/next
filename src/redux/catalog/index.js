@@ -1,33 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from 'next-redux-wrapper';
-import axios from "axios";
-import {setError} from "./errors";
-
-export const fetchCategories= () => async (dispatch) => {
-  try {
-    dispatch(setError(null));
-    dispatch(setIsLoading(true));
-    const { data } = await axios.get('/api/categories');
-    dispatch(setCategoriesList(data));
-  } catch (e) {
-    dispatch(setError(e));
-  } finally {
-    dispatch(setIsLoading(false));
-  }
-}
-
-export const fetchCatalog= () => async (dispatch) => {
-  try {
-    dispatch(setError(null));
-    dispatch(setIsLoading(true));
-    const { data } = await axios.get('/api/items');
-    dispatch(setCatalogList(data));
-  } catch (e) {
-    dispatch(setError(e));
-  } finally {
-    dispatch(setIsLoading(false));
-  }
-}
 
 export const catalogSlice = createSlice({
   name: 'catalog',

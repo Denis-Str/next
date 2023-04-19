@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from 'next-redux-wrapper';
 import { hitsSlice } from "./hits";
-import { catalogSlice } from "./catalog";
+import { catalogSlice } from "./catalog/index";
 import { errorsSlice } from "./errors";
 
 const makeStore = () =>
