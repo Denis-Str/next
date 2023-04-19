@@ -11,7 +11,6 @@ import Category from "@/components/pages/catalog/Categories/Category";
 import styles from "@/pages/catalog/catalog.module.scss";
 import ListView from "@/components/pages/catalog/ListView";
 
-
 export default function Categories() {
   const categories = useSelector(categoriesList);
   const categoryID = useSelector(currentCategory);

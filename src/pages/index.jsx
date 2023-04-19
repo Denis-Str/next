@@ -11,7 +11,7 @@ import Preloader from "@/components/common/Preloader";
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     await store.dispatch(fetchHitsList());
-    // await store.dispatch(fetchCategories());
+    await store.dispatch(fetchCategories());
     await store.dispatch(fetchCatalog());
   }
 );

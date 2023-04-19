@@ -9,11 +9,9 @@ export default function AppHeader() {
   let [showSearch, setShowSearch] = useState(false);
   const router = useRouter();
   const currentRoute = router.pathname;
+
   const navLinks = navMenu.map(({path, name}) =>
-    <li
-      className="nav-item"
-      key={path}
-    >
+    <li className="nav-item" key={path}>
       <Link href={path} className={`${currentRoute === path ? 'nav-link active' : 'nav-link'}`}>{name}</Link>
     </li>)
 
