@@ -6,7 +6,6 @@ import {fetchCatalog, fetchCategories } from "@/redux/catalog/api";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
 import ListView from "@/components/pages/catalog/ListView";
-import Preloader from "@/components/common/Preloader";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
@@ -28,7 +27,7 @@ function HomePage() {
       <section className="catalog">
         <h2 className="text-center">Каталог</h2>
         <Categories />
-        {loading ? <Preloader/> : <ListView />}
+        <ListView />
       </section>
     </>
   )
