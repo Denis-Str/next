@@ -15,7 +15,7 @@ export default function ItemView({item}) {
         <div className={styles['card-content']}>
           <p className="card-text">{item.title}</p>
           <p className="card-text">{item.price} руб.</p>
-          <Link href={`/products/${item.id}`} className="btn btn-outline-primary">Заказать</Link>
+          <Link href={`/product/${item.id}`} className="btn btn-outline-primary">Заказать</Link>
         </div>
       </div>
     </li>

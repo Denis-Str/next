@@ -1,13 +1,16 @@
-import {useRouter} from "next/router";
 import axios from "axios";
+import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import Preloader from "@/components/common/Preloader";
+import TableView from "@/components/pages/product/TableView";
 import style from "./item.module.scss";
 
 export default function ProductsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentSize, setCurrentSize] = useState(0);
+  let [counter, setCounter] = useState(1);
   const [item, setItem] = useState({id: null, images: [], sizes: []});
+
   const router = useRouter();
   const {id} = router.query;
   const fetchItem = async (id) => {
@@ -25,6 +28,16 @@ export default function ProductsPage() {
   useEffect(() => {
     if (id) fetchItem(id)
   }, [id]);
+
+  const increase = () => {
+    if (counter >= 20) return;
+    setCounter(counter = counter + 1);
+  }
+  const reduce = () => {
+    if (counter <= 1) return;
+    setCounter(counter = counter - 1);
+  }
+  const handleChangeCounter = (direction) => direction === 'increase' ? increase() : reduce();
 
   if (isLoading && !id) return <Preloader/>;
 
@@ -52,46 +65,20 @@ export default function ProductsPage() {
               {item.images?.length > 0 && <img src={item.images[0]} className="img-fluid" alt={item.title}/>}
             </div>
             <div className="col-7">
-              <table className="table table-bordered">
-                <tbody>
-                <tr>
-                  <td>Артикул</td>
-                  <td>{item.sku}</td>
-                </tr>
-                <tr>
-                  <td>Производитель</td>
-                  <td>{item.manufacturer}</td>
-                </tr>
-                <tr>
-                  <td>Цвет</td>
-                  <td>{item.color}</td>
-                </tr>
-                <tr>
-                  <td>Материалы</td>
-                  <td>{item.material}</td>
-                </tr>
-                <tr>
-                  <td>Сезон</td>
-                  <td>{item.season}</td>
-                </tr>
-                <tr>
-                  <td>Повод</td>
-                  <td>{item.reason}</td>
-                </tr>
-                </tbody>
-              </table>
+              <TableView item={item} />
               <div className="text-center">
                 Размеры в наличии:
-                <p>
+                <div>
                   {sizesList}
-                </p>
-                <p>Количество:
+                </div>
+                <div>
+                  <span>Количество: </span>
                   <span className="btn-group btn-group-sm pl-2">
-                      <button className="btn btn-secondary">-</button>
-                      <span className="btn btn-outline-primary">1</span>
-                      <button className="btn btn-secondary">+</button>
+                      <button className="btn btn-secondary" onClick={() => handleChangeCounter('reduce')}>-</button>
+                      <span className="btn btn-outline-primary">{counter}</span>
+                      <button className="btn btn-secondary" onClick={() => handleChangeCounter('increase')}>+</button>
                   </span>
-                </p>
+                </div>
               </div>
               <button className="btn btn-danger btn-block btn-lg">В корзину</button>
             </div>

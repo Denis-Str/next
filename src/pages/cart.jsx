@@ -18,7 +18,7 @@ export default function CartPage() {
           <tbody>
           <tr>
             <td scope="row">1</td>
-            <td><a href="/products/1.html">Босоножки 'MYER'</a></td>
+            <td><a href="/product/1.html">Босоножки 'MYER'</a></td>
             <td>18 US</td>
             <td>1</td>
             <td>34 000 руб.</td>
