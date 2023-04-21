@@ -3,6 +3,8 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import Preloader from "@/components/common/Preloader";
 import TableView from "@/components/pages/product/TableView";
+import CounterView from "@/components/pages/product/CounterView";
+import ProductInfo from "@/components/pages/product/ProductInfo";
 import style from "./item.module.scss";
 
 export default function ProductsPage() {
@@ -41,20 +43,6 @@ export default function ProductsPage() {
 
   if (isLoading && !id) return <Preloader/>;
 
-  const sizesList = item.sizes.map(({size, available}) =>
-    <span
-      className={`${style.size} ${!available && style.disabled} ${currentSize === size && style.selected}`}
-      key={size}
-      onClick={() => {
-        if (currentSize === size) {
-          setCurrentSize(0);
-          return;
-        }
-        setCurrentSize(size);
-      }}
-    >{size}
-  </span>);
-
   return (
     <div className="row">
       <div className="col">
@@ -67,18 +55,8 @@ export default function ProductsPage() {
             <div className="col-7">
               <TableView item={item} />
               <div className="text-center">
-                Размеры в наличии:
-                <div>
-                  {sizesList}
-                </div>
-                <div>
-                  <span>Количество: </span>
-                  <span className="btn-group btn-group-sm pl-2">
-                      <button className="btn btn-secondary" onClick={() => handleChangeCounter('reduce')}>-</button>
-                      <span className="btn btn-outline-primary">{counter}</span>
-                      <button className="btn btn-secondary" onClick={() => handleChangeCounter('increase')}>+</button>
-                  </span>
-                </div>
+                <ProductInfo item={item} currentSize={currentSize} setCurrentSize={setCurrentSize} />
+                <CounterView counter={counter} handleChangeCounter={handleChangeCounter} />
               </div>
               <button className="btn btn-danger btn-block btn-lg">В корзину</button>
             </div>
