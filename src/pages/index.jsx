@@ -4,6 +4,7 @@ import {fetchCatalog, fetchCategories } from "@/redux/catalog/api";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
 import ListView from "@/components/pages/catalog/ListView";
+// import Empty from "@/layouts/empty";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
@@ -13,7 +14,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
   }
 );
 
-function HomePage() {
+export default function HomePage() {
   return (
     <>
       <section className="top-sales">
@@ -29,4 +30,10 @@ function HomePage() {
   )
 }
 
-export default HomePage;
+// HomePage.getLayout = function getLayout(page) {
+//   return (
+//     <Empty>
+//       {page}
+//     </Empty>
+//   )
+// }

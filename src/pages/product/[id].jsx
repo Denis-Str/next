@@ -1,6 +1,6 @@
-import axios from "axios";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
+import {fetchItem} from "@/components/pages/product/ProductInfo/api";
 import Preloader from "@/components/common/Preloader";
 import TableView from "@/components/pages/product/TableView";
 import CounterView from "@/components/pages/product/CounterView";
@@ -15,20 +15,9 @@ export default function ProductsPage() {
 
   const router = useRouter();
   const {id} = router.query;
-  const fetchItem = async (id) => {
-    try {
-      setIsLoading(true);
-      const {data} = await axios.get(`/api/items/${id}`);
-      setItem(data);
-    } catch (e) {
-      console.log(e)
-    } finally {
-      setIsLoading(false);
-    }
-  }
 
   useEffect(() => {
-    if (id) fetchItem(id)
+    if (id) fetchItem(id, setIsLoading, setItem)
   }, [id]);
 
   const increase = () => {
@@ -40,6 +29,10 @@ export default function ProductsPage() {
     setCounter(counter = counter - 1);
   }
   const handleChangeCounter = (direction) => direction === 'increase' ? increase() : reduce();
+
+  const handleAddToBasket = () => {
+    console.log(1)
+  }
 
   if (isLoading && !id) return <Preloader/>;
 
@@ -58,7 +51,7 @@ export default function ProductsPage() {
                 <ProductInfo item={item} currentSize={currentSize} setCurrentSize={setCurrentSize} />
                 <CounterView counter={counter} handleChangeCounter={handleChangeCounter} />
               </div>
-              <button className="btn btn-danger btn-block btn-lg">В корзину</button>
+              <button className="btn btn-danger btn-block btn-lg" onClick={() => handleAddToBasket()}>В корзину</button>
             </div>
           </div>
         </section>
