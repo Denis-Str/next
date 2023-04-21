@@ -1,6 +1,8 @@
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
 import {fetchItem} from "@/components/pages/product/ProductInfo/api";
+import {addProduct} from "@/redux/basket";
 import Preloader from "@/components/common/Preloader";
 import TableView from "@/components/pages/product/TableView";
 import CounterView from "@/components/pages/product/CounterView";
@@ -8,6 +10,7 @@ import ProductInfo from "@/components/pages/product/ProductInfo";
 import style from "./item.module.scss";
 
 export default function ProductsPage() {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [currentSize, setCurrentSize] = useState(0);
   let [counter, setCounter] = useState(1);
@@ -31,7 +34,7 @@ export default function ProductsPage() {
   const handleChangeCounter = (direction) => direction === 'increase' ? increase() : reduce();
 
   const handleAddToBasket = () => {
-    console.log(1)
+    dispatch(addProduct({...item, counter, currentSize}));
   }
 
   if (isLoading && !id) return <Preloader/>;
