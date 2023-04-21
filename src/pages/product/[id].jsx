@@ -13,8 +13,8 @@ export default function ProductsPage() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [currentSize, setCurrentSize] = useState(0);
-  let [counter, setCounter] = useState(1);
   const [item, setItem] = useState({id: null, images: [], sizes: []});
+  let [counter, setCounter] = useState(1);
 
   const router = useRouter();
   const {id} = router.query;
@@ -54,7 +54,7 @@ export default function ProductsPage() {
                 <ProductInfo item={item} currentSize={currentSize} setCurrentSize={setCurrentSize} />
                 <CounterView counter={counter} handleChangeCounter={handleChangeCounter} />
               </div>
-              <button className="btn btn-danger btn-block btn-lg" onClick={() => handleAddToBasket()}>В корзину</button>
+              <button className={`btn btn-danger btn-block btn-lg ${currentSize === 0 && 'disabled'}`} onClick={() => handleAddToBasket()}>В корзину</button>
             </div>
           </div>
         </section>
