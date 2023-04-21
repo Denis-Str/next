@@ -1,12 +1,12 @@
 import Link from "next/link";
-import styles from "./header.module.scss";
-import {useState} from "react";
+import CartView from "@/components/general/AppHeader/CartView";
 import {useRouter} from "next/router";
 import navMenu from "@/mock/navMenu.json";
-
+import {useSelector} from "react-redux";
+import {basketList} from "@/redux/basket";
 
 export default function AppHeader() {
-  let [showSearch, setShowSearch] = useState(false);
+  const basket = useSelector(basketList);
   const router = useRouter();
   const currentRoute = router.pathname;
 
@@ -28,18 +28,7 @@ export default function AppHeader() {
                 {navLinks}
               </ul>
               <div>
-                <div className={styles.pics}>
-                  <form data-id="search-form"
-                        className={`${styles['search-form']} form-inline ${showSearch ? '' : 'invisible'}`.trim()}>
-                    <input className={`${styles['form-control']}`} placeholder="Поиск"/>
-                  </form>
-                  <div className={`${styles.pic} ${styles.search}`}
-                       onClick={() => setShowSearch(showSearch = !showSearch)}/>
-                  <Link className={`${styles.pic} ${styles.cart}`} href="/cart">
-                    <div className={styles['cart-full']}>1</div>
-                    <div className="header-controls-cart-menu"></div>
-                  </Link>
-                </div>
+                {basket.length > 0 && <CartView />}
               </div>
             </div>
           </nav>
