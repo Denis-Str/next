@@ -1,7 +1,15 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {catalogList, currentCategory, loadMoreCatalogList, setIsLoading, isLoading} from "@/redux/catalog";
+import {
+  catalogList,
+  currentCategory,
+  loadMoreCatalogList,
+  setIsLoading,
+  searchValue,
+  isLoading,
+  setSearchValue
+} from "@/redux/catalog";
 import ItemView from "@/components/pages/catalog/ListView/ItemView";
 import Preloader from "@/components/common/Preloader";
 
@@ -12,8 +20,12 @@ export default function ListView() {
 
   const catalog = useSelector(catalogList);
   const categoryId = useSelector(currentCategory);
+  const search = useSelector(searchValue);
   const loading = useSelector(isLoading);
-  const catalogView = catalog.map(item => <ItemView key={`${item.category}-${item.id}`} item={item}/>);
+
+  const filteredList = catalog.filter(({title}) => title.toLowerCase().includes(search));
+  const currentCatalog = search ? filteredList : catalog;
+  const catalogView = currentCatalog.length === 0 ? <div>По вашему запросу ни чего не найдено :(</div> : currentCatalog.map(item => <ItemView key={`${item.category}-${item.id}`} item={item}/>);
 
   const loadMore = async () => {
     try {
@@ -37,6 +49,7 @@ export default function ListView() {
   useEffect(() => {
     setCount(count = 6);
     setDisabledLoadMore(true);
+    dispatch(setSearchValue(''))
   }, [categoryId]);
 
   useEffect(() => {
@@ -48,7 +61,7 @@ export default function ListView() {
     <>
       <ul className="row">{catalogView}</ul>
       {
-        disabledLoadMore && <div className="text-center">
+        disabledLoadMore && !search && <div className="text-center">
           <button className="btn btn-outline-primary" onClick={() => loadMore()}>Загрузить ещё</button>
         </div>
       }
