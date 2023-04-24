@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { errorMessage } from "@/redux/errors";
+import Empty from "@/layouts/empty";
 
 export default function ErrorPage() {
   const message = useSelector(errorMessage)
@@ -15,5 +16,13 @@ export default function ErrorPage() {
         </section>
       </div>
     </div>
+  )
+}
+
+ErrorPage.getLayout = function getLayout(page) {
+  return (
+    <Empty>
+      {page}
+    </Empty>
   )
 }

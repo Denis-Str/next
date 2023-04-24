@@ -4,7 +4,7 @@ import {fetchCatalog, fetchCategories } from "@/redux/catalog/api";
 import SalesList from "@/components/pages/Index/TopSales";
 import Categories from "@/components/pages/catalog/Categories";
 import ListView from "@/components/pages/catalog/ListView";
-// import Empty from "@/layouts/empty";
+import Empty from "@/layouts/empty";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {

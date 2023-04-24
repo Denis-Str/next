@@ -1,4 +1,6 @@
-function Error({ statusCode }) {
+import Empty from "@/layouts/empty";
+
+export default function Error({ statusCode }) {
   return (
     <p>
       {statusCode
@@ -13,4 +15,10 @@ Error.getInitialProps = ({ res, err }) => {
   return { statusCode }
 }
 
-export default Error
+Error.getLayout = function getLayout(page) {
+  return (
+    <Empty>
+      {page}
+    </Empty>
+  )
+}
