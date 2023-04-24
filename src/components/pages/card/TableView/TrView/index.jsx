@@ -13,9 +13,9 @@ export default function TrView({item, index}) {
         <Link href={`/product/${item.id}`}>{item.title}</Link>
       </td>
       <td>{item.currentSize}</td>
-      <td>{item.counter}</td>
+      <td>{item.count}</td>
       <td>{item.price} руб.</td>
-      <td>{Math.round(item.counter * item.price)} руб.</td>
+      <td>{Math.round(item.count * item.price)} руб.</td>
       <td>
         <button className="btn btn-outline-danger btn-sm" onClick={() => handleRemove()}>Удалить</button>
       </td>

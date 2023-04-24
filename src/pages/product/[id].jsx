@@ -14,7 +14,7 @@ export default function ProductsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentSize, setCurrentSize] = useState(0);
   const [item, setItem] = useState({id: null, images: [], sizes: []});
-  let [counter, setCounter] = useState(1);
+  let [count, setCounter] = useState(1);
 
   const router = useRouter();
   const {id} = router.query;
@@ -24,17 +24,17 @@ export default function ProductsPage() {
   }, [id]);
 
   const increase = () => {
-    if (counter >= 20) return;
-    setCounter(counter = counter + 1);
+    if (count >= 20) return;
+    setCounter(count = count + 1);
   }
   const reduce = () => {
-    if (counter <= 1) return;
-    setCounter(counter = counter - 1);
+    if (count <= 1) return;
+    setCounter(count = count - 1);
   }
   const handleChangeCounter = (direction) => direction === 'increase' ? increase() : reduce();
 
   const handleAddToBasket = () => {
-    dispatch(addProduct({...item, counter, currentSize}));
+    dispatch(addProduct({...item, count, currentSize}));
   }
 
   if (isLoading && !id) return <Preloader/>;
@@ -52,7 +52,7 @@ export default function ProductsPage() {
               <TableView item={item} />
               <div className="text-center">
                 <ProductInfo item={item} currentSize={currentSize} setCurrentSize={setCurrentSize} />
-                <CounterView counter={counter} handleChangeCounter={handleChangeCounter} />
+                <CounterView count={count} handleChangeCounter={handleChangeCounter} />
               </div>
               <button className={`btn btn-danger btn-block btn-lg ${currentSize === 0 && 'disabled'}`} onClick={() => handleAddToBasket()}>В корзину</button>
             </div>

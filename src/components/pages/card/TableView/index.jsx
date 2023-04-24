@@ -2,7 +2,7 @@ import TrView from "@/components/pages/card/TableView/TrView";
 
 export default function TableView({list}) {
   const trElem = list.map((item, index) => <TrView item={item} index={index} key={item.id} />);
-  const totalCount = list.reduce((currentSum, { counter, price }) => currentSum + (counter * price), 0);
+  const totalCount = list.reduce((currentSum, { count, price }) => currentSum + (count * price), 0);
 
   return (
     <table className="table table-bordered">

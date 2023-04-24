@@ -14,6 +14,9 @@ export const basketSlice = createSlice({
     },
     removeProduct: (state, {payload}) => {
       state.list = state.list.filter(({id}) => id !== payload);
+    },
+    clearBasket: (state) => {
+      state.list = [];
     }
   },
   extraReducers: {
@@ -26,7 +29,7 @@ export const basketSlice = createSlice({
   }
 })
 
-export const { addProduct, removeProduct } = basketSlice.actions;
+export const { addProduct, removeProduct, clearBasket } = basketSlice.actions;
 export const basketList = ({ basket }) =>  basket.list;
 
 export default basketSlice.reducer;
