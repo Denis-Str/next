@@ -23,7 +23,7 @@ export const basketSlice = createSlice({
     [HYDRATE]: (state, action) => {
       return {
         ...state,
-        ...action.payload.catalog,
+        ...action.payload.basket,
       };
     },
   }
