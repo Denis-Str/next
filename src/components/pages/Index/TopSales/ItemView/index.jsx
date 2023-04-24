@@ -1,4 +1,5 @@
 import styles from "./item.module.scss";
+import Link from "next/link";
 
 export default function ItemView({item}) {
 
@@ -11,6 +12,7 @@ export default function ItemView({item}) {
           <div className={`card-body ${styles['card-body']}`}>
             <h2 className={styles.title}>{item.title}</h2>
             <div className="card-text">{item.price}</div>
+            <Link href={`/product/${item.id}`}>Заказать</Link>
           </div>
       </div>
     </li>

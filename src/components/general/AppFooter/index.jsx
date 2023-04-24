@@ -8,7 +8,7 @@ export default function AppFooter() {
         <div className="col">
           <section>
             <h5>Информация</h5>
-            <ul className="nav flex-column">
+            <ul className="navbar-nav flex-column">
               <li className="nav-item">
                 <Link href="/about" className="nav-link">О магазине</Link>
               </li>
